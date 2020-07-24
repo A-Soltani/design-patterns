@@ -19,6 +19,8 @@ namespace Builder
             pizzaOrdering.ConstructPizza();
             Pizza hawaiianPizza = pizzaOrdering.GetPizza();
             PrintPizzaIngredients("hawaiian pizza", hawaiianPizza);
+
+            Console.ReadKey();
         }
 
         private static void PrintPizzaIngredients(string pizzaName, Pizza pizza)
