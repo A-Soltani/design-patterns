@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Builder
 {
-    public class PizzaOrdering
+    internal class PizzaOrdering
     {
         private PizzaBuilder _pizzaBuilder;
         public void SetPizzaBuilder(PizzaBuilder pizzaBuilder) => _pizzaBuilder = pizzaBuilder;

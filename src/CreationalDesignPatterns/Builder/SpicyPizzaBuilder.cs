@@ -5,7 +5,7 @@ using System.Text;
 namespace Builder
 {
     /* "ConcreteBuilder" */
-    public class SpicyPizzaBuilder: PizzaBuilder
+    internal class SpicyPizzaBuilder: PizzaBuilder
     {
         public override void BuildTopping() => Pizza.SetTopping("pepperoni+salami");
         public override void BuildSauce() => Pizza.SetSauce("hot");

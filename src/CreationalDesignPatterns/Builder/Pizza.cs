@@ -5,7 +5,7 @@ using System.Text;
 namespace Builder
 {
     /* "Product" */
-    public class Pizza
+    internal class Pizza
     {
         public string Topping { get; private set; }
         public string Sauce { get; private set; }

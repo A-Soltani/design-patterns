@@ -5,7 +5,7 @@ using System.Text;
 namespace Builder
 {
     /* "Abstract Builder" */
-    public abstract class PizzaBuilder
+    internal abstract class PizzaBuilder
     {
         private protected Pizza Pizza;
         public Pizza GetPizza() => Pizza;
