@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Builder
 {
+    /* "ConcreteBuilder" */
     public class SpicyPizzaBuilder: PizzaBuilder
     {
         public override void BuildTopping() => Pizza.SetTopping("pepperoni+salami");
