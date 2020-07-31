@@ -1,4 +1,6 @@
 ﻿using System;
+using AbstractFactory.FurnitureFactory;
+using AbstractFactory.VictorianFurnitureFactory;
 
 namespace AbstractFactory
 {
@@ -6,70 +8,43 @@ namespace AbstractFactory
     {
         static void Main(string[] args)
         {
-            IFurnitureFactory modernfurnitureFactory = new ModernFurnitureFactory();
-            IFurnitureFactory victorianfurnitureFactory = new VictorianFurnitureFactory();
+            var selectedCollection = "victorian";
+            IFurnitureFactory victorianFurnitureFactory = GetFurnitureFactory(selectedCollection);
+            PrintSelectedCollectionDetails(victorianFurnitureFactory, selectedCollection);
+
+            selectedCollection = "modern";
+            IFurnitureFactory modernFurnitureFactory = GetFurnitureFactory(selectedCollection);
+            PrintSelectedCollectionDetails(modernFurnitureFactory, selectedCollection);
+
+            Console.ReadKey();
         }
-    }
 
-    internal class VictorianFurnitureFactory : IFurnitureFactory
-    {
-        public IChair CreateChair() => new VictorianChair() { Material = "wood", Weight = 10 };
-
-        public ICoffeeTable CreateCoffeeTable()
+        private static void PrintSelectedCollectionDetails(IFurnitureFactory furnitureFactory, string selectedCollection)
         {
-            throw new NotImplementedException();
+            var chair = furnitureFactory.CreateChair();
+            var coffeeTable = furnitureFactory.CreateCoffeeTable();
+            var sofa = furnitureFactory.CreateSofa();
+
+            Console.WriteLine($"***** collection name: {selectedCollection} *****");
+            Console.WriteLine($"Chair{Environment.NewLine}" +
+                              $"Design: {chair.Design} {Environment.NewLine}" +
+                              $"Construction: {chair.Construction} {Environment.NewLine}");
+
+            Console.WriteLine($"Coffee Table{Environment.NewLine}" +
+                              $"Design: {coffeeTable.Design} {Environment.NewLine}" +
+                              $"Construction: {coffeeTable.Construction} {Environment.NewLine}");
+
+            Console.WriteLine($"Sofa{Environment.NewLine}" +
+                              $"Design: {sofa.Design} {Environment.NewLine}" +
+                              $"Construction: {sofa.Construction} {Environment.NewLine}");
         }
 
-        public ISofa CreateSofa()
+        private static IFurnitureFactory GetFurnitureFactory(string selectedCollection)
         {
-            throw new NotImplementedException();
+            if (selectedCollection == "victorian")
+                return new VictorianFurnitureFactory.VictorianFurnitureFactory();
+            else
+                return new ModernFurnitureFactory.ModernFurnitureFactory();
         }
-    }
-
-    internal class VictorianChair : IChair
-    {
-        public string Material { get; set; }
-        public int Weight { get; set; }
-    }
-
-    internal class ModernFurnitureFactory : IFurnitureFactory
-    {
-        public IChair CreateChair()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICoffeeTable CreateCoffeeTable()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ISofa CreateSofa()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    internal interface IFurnitureFactory
-    {
-        IChair CreateChair();
-        ICoffeeTable CreateCoffeeTable();
-        ISofa CreateSofa();
-    }
-
-    internal interface ISofa
-    {
-
-    }
-
-    internal interface ICoffeeTable
-    {
-
-    }
-
-    internal interface IChair
-    {
-        string Material { get; set; }
-        int Weight { get; set; }
     }
 }
